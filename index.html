@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIM SOCIETY - Solutions Informatiques Professionnelles</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- AOS Animation Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <!-- Custom CSS -->
+  <style>
+    :root {
+      /* Color System */
+      --primary: #0066CC;
+      --primary-dark: #0055AA;
+      --primary-light: #4D94FF;
+      --secondary: #8E8E93;
+      --secondary-dark: #636366;
+      --secondary-light: #AEAEB2;
+      --accent: #00BCD4;
+      --accent-dark: #0097A7;
+      --accent-light: #4DD0E1;
+      --success: #34C759;
+      --warning: #FF9500;
+      --error: #FF3B30;
+      --gray-50: #F9FAFB;
+      --gray-100: #F2F2F7;
+      --gray-200: #E5E5EA;
+      --gray-300: #D1D1D6;
+      --gray-400: #C7C7CC;
+      --gray-500: #AEAEB2;
+      --gray-600: #8E8E93;
+      --gray-700: #636366;
+      --gray-800: #3A3A3C;
+      --gray-900: #1C1C1E;
+      
+      /* Spacing System (8px increments) */
+      --space-1: 0.5rem;  /* 8px */
+      --space-2: 1rem;    /* 16px */
+      --space-3: 1.5rem;  /* 24px */
+      --space-4: 2rem;    /* 32px */
+      --space-5: 2.5rem;  /* 40px */
+      --space-6: 3rem;    /* 48px */
+      --space-7: 3.5rem;  /* 56px */
+      --space-8: 4rem;    /* 64px */
+      
+      /* Typography */
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+
+    /* Base Styles */
+    body {
+      font-family: var(--font-sans);
+      color: var(--gray-800);
+      line-height: 1.5;
+      overflow-x: hidden;
+      background-color: #fff;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--gray-900);
+      margin-bottom: var(--space-2);
+    }
+
+    h1 {
+      font-size: 3rem;
+      letter-spacing: -0.025em;
+    }
+
+    h2 {
+      font-size: 2.25rem;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin-bottom: var(--space-2);
+    }
+
+    section {
+      padding: var(--space-7) 0;
+    }
+
+    .section-title {
+      position: relative;
+      margin-bottom: var(--space-4);
+      text-align: center;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background-color: var(--primary);
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--gray-700);
+      margin-bottom: var(--space-5);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Utility Classes */
+    .text-primary { color: var(--primary) !important; }
+    .text-secondary { color: var(--secondary) !important; }
+    .text-accent { color: var(--accent) !important; }
+    .bg-primary { background-color: var(--primary) !important; }
+    .bg-light { background-color: var(--gray-50) !important; }
+    .bg-dark { background-color: var(--gray-900) !important; }
+    .shadow-custom { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
+    .rounded-custom { border-radius: 16px; }
+    
+    /* Button Styles */
+    .btn {
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-transform: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover, .btn-primary:focus {
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 102, 204, 0.2);
+    }
+
+    .btn-outline-primary {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-outline-primary:hover, .btn-outline-primary:focus {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 102, 204, 0.2);
+    }
+
+    .btn-lg {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+    }
+
+    .navbar-brand i {
+      color: var(--primary);
+      margin-right: 0.5rem;
+      font-size: 1.75rem;
+    }
+
+    .nav-link {
+      color: var(--gray-800);
+      font-weight: 500;
+      padding: 0.5rem 1rem !important;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link:focus {
+      color: var(--primary);
+    }
+
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      right: 1rem;
+      height: 2px;
+      background-color: var(--primary);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover:after, .nav-link:focus:after {
+      transform: scaleX(1);
+    }
+
+    .navbar-toggler {
+      border: none;
+      padding: 0;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      width: 24px;
+      height: 17px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-toggler-icon:before,
+    .navbar-toggler-icon:after,
+    .navbar-toggler-icon span {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--gray-900);
+      transition: all 0.3s ease;
+    }
+
+    .navbar-toggler-icon:before {
+      top: 0;
+    }
+
+    .navbar-toggler-icon span {
+      top: 7.5px;
+    }
+
+    .navbar-toggler-icon:after {
+      bottom: 0;
+    }
+
+    .navbar.scrolled {
+      background-color: #fff;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      padding: 0.75rem 0;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding: 8rem 0 5rem;
+      background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      margin-bottom: var(--space-3);
+    }
+
+    .hero-btns {
+      margin-top: var(--space-4);
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero-shape {
+      position: absolute;
+      z-index: 0;
+      opacity: 0.1;
+    }
+
+    .hero-shape-1 {
+      top: 10%;
+      right: 5%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      filter: blur(50px);
+    }
+
+    .hero-shape-2 {
+      bottom: 10%;
+      left: 5%;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      filter: blur(40px);
+    }
+
+    /* Services Section */
+    .service-card {
+      padding: var(--space-3);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      height: 100%;
+      background-color: #fff;
+      border: 1px solid var(--gray-200);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      border-color: transparent;
+    }
+
+    .service-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      border-radius: 16px;
+      background-color: var(--primary-light);
+      color: #fff;
+      font-size: 1.75rem;
+      margin-bottom: var(--space-2);
+    }
+
+    /* About Section */
+    .about-img {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .about-img img {
+      border-radius: 16px;
+      transition: transform 0.5s ease;
+    }
+
+    .about-img:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-content {
+      padding: var(--space-2);
+    }
+
+    .about-stats {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: var(--space-3);
+    }
+
+    .stat-item {
+      margin-right: var(--space-4);
+      margin-bottom: var(--space-2);
+    }
+
+    .stat-item h3 {
+      font-size: 2.5rem;
+      margin-bottom: 0;
+      color: var(--primary);
+    }
+
+    .stat-item p {
+      margin-bottom: 0;
+      font-weight: 500;
+      color: var(--gray-700);
+    }
+
+    /* Team Section */
+    .team-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: var(--space-4);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-img img {
+      width: 100%;
+      transition: transform 0.5s ease;
+    }
+
+    .team-card:hover .team-img img {
+      transform: scale(1.05);
+    }
+
+    .team-info {
+      padding: var(--space-2);
+      text-align: center;
+      background-color: #fff;
+    }
+
+    .team-info h4 {
+      margin-bottom: 0.25rem;
+      font-size: 1.25rem;
+    }
+
+    .team-info p {
+      color: var(--gray-600);
+      margin-bottom: var(--space-1);
+    }
+
+    .team-social {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--space-1);
+    }
+
+    .team-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      color: var(--gray-700);
+      margin: 0 0.25rem;
+      transition: all 0.3s ease;
+    }
+
+    .team-social a:hover {
+      background-color: var(--primary);
+      color: #fff;
+    }
+
+    /* Portfolio */
+    .portfolio-filter {
+      display: flex;
+      justify-content: center;
+      margin-bottom: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .portfolio-filter button {
+      background: none;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .portfolio-filter button:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      right: 1rem;
+      height: 2px;
+      background-color: var(--primary);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-filter button:hover, .portfolio-filter button.active {
+      color: var(--primary);
+    }
+
+    .portfolio-filter button.active:after {
+      transform: scaleX(1);
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: var(--space-3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .portfolio-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-img img {
+      width: 100%;
+      transition: transform 0.5s ease;
+    }
+
+    .portfolio-item:hover .portfolio-img img {
+      transform: scale(1.05);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 102, 204, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-info {
+      text-align: center;
+      color: #fff;
+      padding: var(--space-2);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .portfolio-item:hover .portfolio-info {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .portfolio-info h4 {
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .portfolio-info p {
+      margin-bottom: 0;
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+      padding: var(--space-3);
+      border-radius: 16px;
+      background-color: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: var(--space-2);
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial-text {
+      margin-bottom: var(--space-2);
+      position: relative;
+      padding-left: var(--space-4);
+    }
+
+    .testimonial-text:before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: -15px;
+      font-size: 3rem;
+      color: var(--primary);
+      opacity: 0.5;
+      line-height: 1;
+    }
+
+    .client-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .client-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: var(--space-2);
+    }
+
+    .client-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .client-details h5 {
+      margin-bottom: 0.25rem;
+      font-size: 1.1rem;
+    }
+
+    .client-details p {
+      margin-bottom: 0;
+      color: var(--gray-600);
+    }
+
+    .testimonial-rating {
+      margin-top: var(--space-1);
+      color: var(--warning);
+    }
+
+    /* Contact Section */
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: var(--space-3);
+    }
+
+    .contact-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--primary-light);
+      color: #fff;
+      font-size: 1.25rem;
+      margin-right: var(--space-2);
+      flex-shrink: 0;
+    }
+
+    .contact-text h5 {
+      margin-bottom: 0.25rem;
+      font-size: 1.1rem;
+    }
+
+    .contact-text p, .contact-text a {
+      margin-bottom: 0;
+      color: var(--gray-700);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-text a:hover {
+      color: var(--primary);
+    }
+
+    .contact-form {
+      padding: var(--space-3);
+      border-radius: 16px;
+      background-color: #fff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-control {
+      border-radius: 8px;
+      padding: 0.75rem;
+      border: 1px solid var(--gray-300);
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--gray-900);
+      color: var(--gray-400);
+      padding-top: var(--space-6);
+    }
+
+    .footer-widget {
+      margin-bottom: var(--space-4);
+    }
+
+    .footer-widget h4 {
+      color: #fff;
+      font-size: 1.25rem;
+      margin-bottom: var(--space-2);
+      position: relative;
+    }
+
+    .footer-widget h4:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    .footer-about p {
+      margin-bottom: var(--space-2);
+    }
+
+    .footer-contact li {
+      margin-bottom: var(--space-1);
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .footer-contact li i {
+      color: var(--primary);
+      margin-right: 10px;
+      margin-top: 5px;
+    }
+
+    .footer-links li {
+      margin-bottom: var(--space-1);
+    }
+
+    .footer-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-social {
+      display: flex;
+      margin-top: var(--space-2);
+    }
+
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--gray-400);
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background-color: var(--primary);
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: var(--space-2) 0;
+      text-align: center;
+    }
+
+    /* Animation Keyframes */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Media Queries */
+    @media (max-width: 991px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
+      section { padding: var(--space-5) 0; }
+      .hero { padding: 7rem 0 4rem; }
+    }
+
+    @media (max-width: 767px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.75rem; }
+      .hero { padding: 6rem 0 3rem; }
+      .hero-image { margin-top: var(--space-4); }
+      .section-title { margin-bottom: var(--space-3); }
+      .service-card, .team-card, .testimonial-card { margin-bottom: var(--space-3); }
+    }
+
+    @media (max-width: 575px) {
+      h1 { font-size: 1.75rem; }
+      h2 { font-size: 1.5rem; }
+      .btn-lg { padding: 0.75rem 1.5rem; font-size: 1rem; }
+      .hero-btns .btn { margin-bottom: var(--space-2); width: 100%; }
+      .portfolio-filter button { margin-bottom: var(--space-1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#hero">
+        <i class="fas fa-desktop"></i>
+        SIM SOCIETY
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><span></span></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#hero">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">À Propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#team">Équipe</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#portfolio">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testimonials">Témoignages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <a href="#contact" class="btn btn-primary">Demander un devis</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 hero-content" data-aos="fade-right" data-aos-duration="1000">
+          <h1>Solutions informatiques <span class="text-primary">innovantes</span> pour votre entreprise</h1>
+          <p class="lead">Chez SIM SOCIETY, nous fournissons des services informatiques de premier ordre pour répondre à tous vos besoins technologiques. Nous transformons les défis en opportunités.</p>
+          <div class="hero-btns">
+            <a href="#services" class="btn btn-primary btn-lg me-3 mb-2 mb-md-0">Nos services</a>
+            <a href="#contact" class="btn btn-outline-primary btn-lg">Nous contacter</a>
+          </div>
+        </div>
+        <div class="col-lg-6 hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+          <img src="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="IT Solutions" class="img-fluid rounded-custom shadow-custom">
+        </div>
+      </div>
+    </div>
+    <div class="hero-shape hero-shape-1"></div>
+    <div class="hero-shape hero-shape-2"></div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="bg-light">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Nos Services</h2>
+      </div>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Nous proposons une gamme complète de services informatiques pour répondre à tous vos besoins professionnels, des solutions sur mesure aux services managés.</p>
+      
+      <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card shadow-custom">
+            <div class="service-icon bg-primary">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3>Développement web</h3>
+            <p>Création de sites web professionnels, applications web, et solutions e-commerce sur mesure pour votre entreprise.</p>
+            <a href="#contact" class="btn btn-outline-primary mt-2">En savoir plus</a>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card shadow-custom">
+            <div class="service-icon" style="background-color: var(--accent);">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Cybersécurité</h3>
+            <p>Protection de vos données sensibles contre les menaces, audits de sécurité et mise en place de solutions robustes.</p>
+            <a href="#contact" class="btn btn-outline-primary mt-2">En savoir plus</a>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+          <div class="service-card shadow-custom">
+            <div class="service-icon" style="background-color: var(--success);">
+              <i class="fas fa-cloud"></i>
+            </div>
+            <h3>Cloud Computing</h3>
+            <p>Services cloud fiables, migration, sauvegarde et optimisation de votre infrastructure informatique.</p>
+            <a href="#contact" class="btn btn-outline-primary mt-2">En savoir plus</a>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="500">
+          <div class="service-card shadow-custom">
+            <div class="service-icon" style="background-color: var(--warning);">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3>Réseaux & Infrastructure</h3>
+            <p>Conception, déploiement et maintenance de réseaux informatiques fiables et performants.</p>
+            <a href="#contact" class="btn btn-outline-primary mt-2">En savoir plus</a>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="600">
+          <div class="service-card shadow-custom">
+            <div class="service-icon" style="background-color: var(--gray-700);">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h3>Support technique</h3>
+            <p>Assistance informatique rapide et efficace pour résoudre vos problèmes et assurer la continuité de vos activités.</p>
+            <a href="#contact" class="btn btn-outline-primary mt-2">En savoir plus</a>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="700">
+          <div class="service-card shadow-custom">
+            <div class="service-icon" style="background-color: var(--error);">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Applications mobiles</h3>
+            <p>Développement d'applications mobiles innovantes pour iOS et Android adaptées à vos besoins spécifiques.</p>
+            <a href="#contact" class="btn btn-outline-primary mt-2">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+          <div class="about-img shadow-custom">
+            <img src="https://www.hsc.fr/wp-content/uploads/2023/08/informaticien-specialiste-securite.webp" alt="About SIM SOCIETY" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-lg-6 about-content" data-aos="fade-left" data-aos-delay="200">
+          <h2>À propos de SIM SOCIETY</h2>
+          <p class="lead">Fondée en Novembre 2022 par le développeur Logiciel Ibrahima Mohamed Diarra</p>
+          <p>SIM SOCIETY vous accompagne grace à leur passionnés de la technologie moderne, déterminés à vous fournir des solutions informatiques de haute qualité qui vous permettent d'atteindre vos objectifs commerciaux. Notre équipe d'experts qualifiés combine expertise technique et vision stratégique rare pour offrir des services sur mesure.</p>
+          <p>Nous croyons en l'établissement de relations durables avec nos clients, basées sur la confiance, l'intégrité et des résultats exceptionnels. Quelle que soit la taille de votre entreprise, nous avons les compétences et l'expérience nécessaires pour répondre à vos besoins informatiques.</p>
+          
+          <div class="about-stats">
+            <div class="stat-item">
+              <h3>100+</h3>
+              <p>Clients satisfaits</p>
+            </div>
+            <div class="stat-item">
+              <h3>200+</h3>
+              <p>Projets réalisés</p>
+            </div>
+            <div class="stat-item">
+              <h3>15+</h3>
+              <p>Experts qualifiés</p>
+            </div>
+          </div>
+          
+          <a href="#contact" class="btn btn-primary mt-4">Travaillons ensemble</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="bg-light">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Notre Équipe</h2>
+      </div>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Rencontrez nos experts passionnés qui travaillent avec dévouement pour fournir des solutions informatiques exceptionnelles à nos clients.</p>
+      
+      <div class="row">
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="team-card">
+            <div class="team-img">
+              <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Team Member">
+            </div>
+            <div class="team-info">
+              <h4>Marc Dubois</h4>
+              <p>Directeur Général</p>
+              <div class="team-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="team-card">
+            <div class="team-img">
+              <img src="https://img.freepik.com/photos-gratuite/portrait-technicien-souriant-dans-systeme-surveillance-performances-du-centre-donnees_482257-125692.jpg?semt=ais_hybrid&w=740&q=80" alt="Team Member">
+            </div>
+            <div class="team-info">
+              <h4>Sophie Martin</h4>
+              <p>Directrice Technique</p>
+              <div class="team-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+          <div class="team-card">
+            <div class="team-img">
+              <img src="https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Team Member">
+            </div>
+            <div class="team-info">
+              <h4>Thomas Legrand</h4>
+              <p>Expert Cybersécurité</p>
+              <div class="team-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
+          <div class="team-card">
+            <div class="team-img">
+              <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Team Member">
+            </div>
+            <div class="team-info">
+              <h4>Émilie Rousseau</h4>
+              <p>Lead Développeuse</p>
+              <div class="team-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Notre Portfolio</h2>
+      </div>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Découvrez nos réalisations et projets qui démontrent notre expertise et notre engagement envers l'excellence technique.</p>
+      
+      <div class="portfolio-filter" data-aos="fade-up" data-aos-delay="200">
+        <button class="active" data-filter="all">Tous</button>
+        <button data-filter="web">Développement Web</button>
+        <button data-filter="mobile">Applications Mobiles</button>
+        <button data-filter="cloud">Cloud & Infrastructure</button>
+        <button data-filter="security">Cybersécurité</button>
+      </div>
+      
+      <div class="row portfolio-container">
+        <div class="col-md-6 col-lg-4 portfolio-item web" data-aos="fade-up" data-aos-delay="300">
+          <div class="portfolio-img">
+            <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Portfolio Item" class="img-fluid">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h4>Plateforme e-commerce</h4>
+                <p>Développement Web</p>
+                <a href="#" class="btn btn-light btn-sm mt-3">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 portfolio-item mobile" data-aos="fade-up" data-aos-delay="400">
+          <div class="portfolio-img">
+            <img src="https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Portfolio Item" class="img-fluid">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h4>Application de livraison</h4>
+                <p>Application Mobile</p>
+                <a href="#" class="btn btn-light btn-sm mt-3">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 portfolio-item cloud" data-aos="fade-up" data-aos-delay="500">
+          <div class="portfolio-img">
+            <img src="https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Portfolio Item" class="img-fluid">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h4>Migration cloud AWS</h4>
+                <p>Cloud & Infrastructure</p>
+                <a href="#" class="btn btn-light btn-sm mt-3">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 portfolio-item security" data-aos="fade-up" data-aos-delay="600">
+          <div class="portfolio-img">
+            <img src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Portfolio Item" class="img-fluid">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h4>Audit de sécurité</h4>
+                <p>Cybersécurité</p>
+                <a href="#" class="btn btn-light btn-sm mt-3">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 portfolio-item web" data-aos="fade-up" data-aos-delay="700">
+          <div class="portfolio-img">
+            <img src="https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Portfolio Item" class="img-fluid">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h4>Portail immobilier</h4>
+                <p>Développement Web</p>
+                <a href="#" class="btn btn-light btn-sm mt-3">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 portfolio-item mobile" data-aos="fade-up" data-aos-delay="800">
+          <div class="portfolio-img">
+            <img src="https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Portfolio Item" class="img-fluid">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <h4>App de fitness</h4>
+                <p>Application Mobile</p>
+                <a href="#" class="btn btn-light btn-sm mt-3">Voir le projet</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="bg-light">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Témoignages</h2>
+      </div>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Découvrez ce que nos clients disent de notre travail et de notre engagement envers leur réussite technologique.</p>
+      
+      <div class="row">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              <p>SIM SOCIETY a transformé notre infrastructure IT. Leur équipe a été incroyablement professionnelle et compétente. Nous recommandons leurs services sans hésitation.</p>
+            </div>
+            <div class="client-info">
+              <div class="client-img">
+                <img src="https://img.freepik.com/photos-premium/portrait-programmeur-afro-americain-debout-travaillant-ordinateur-portable-levant-yeux-souriant-camera-codeur-tenant-ordinateur-portable-cote-collegue-informatique-volumineux-dans-bureau-agence-informatique_482257-37326.jpg?semt=ais_hybrid&w=740&q=80" alt="Client">
+              </div>
+              <div class="client-details">
+                <h5>WILLIAM JOHNSON</h5>
+                <p>PDG, TechVision</p>
+                <div class="testimonial-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              <p>Le niveau d'expertise et de service fourni par SIM SOCIETY est exceptionnel. Ils ont développé une application mobile qui a dépassé toutes nos attentes.</p>
+            </div>
+            <div class="client-info">
+              <div class="client-img">
+                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Client">
+              </div>
+              <div class="client-details">
+                <h5>Marie Laurent</h5>
+                <p>Directrice Marketing, InnoGroup</p>
+                <div class="testimonial-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              <p>Leur service de cybersécurité a complètement sécurisé notre système. L'équipe est réactive, efficace et vraiment à l'écoute de nos besoins spécifiques.</p>
+            </div>
+            <div class="client-info">
+              <div class="client-img">
+                <img src="https://img.freepik.com/photos-gratuite/test-programmeur-debogage-logiciels-entreprise_482257-108489.jpg?semt=ais_hybrid&w=740&q=80" alt="Client">
+              </div>
+              <div class="client-details">
+                <h5>Pierre Jordan</h5>
+                <p>DSI, FinancePro</p>
+                <div class="testimonial-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Contactez-nous</h2>
+      </div>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Prêt à transformer votre entreprise avec nos solutions informatiques ? Contactez-nous dès aujourd'hui pour discuter de vos besoins.</p>
+      
+      <div class="row">
+        <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
+          <div class="contact-info">
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h5>Notre adresse</h5>
+                <p>Bamako, Mali</p>
+              </div>
+            </div>
+            
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-text">
+                <h5>Email</h5>
+                <p><a href="mailto:contact@simsociety.com">contact@nysus369.com</a></p>
+              </div>
+            </div>
+            
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h5>Téléphone</h5>
+                <p><a href="tel:+33123456789">+22373245349</a></p>
+              </div>
+            </div>
+            
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-text">
+                <h5>Heures d'ouverture</h5>
+                <p>Lundi - Vendredi: 9h00 - 18h00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-7" data-aos="fade-up" data-aos-delay="300">
+          <div class="contact-form">
+            <form id="contactForm">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-group">
+                    <label for="name" class="form-label">Nom complet</label>
+                    <input type="text" class="form-control" id="name" placeholder="Votre nom" required>
+                  </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                  <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Votre email" required>
+                  </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                  <div class="form-group">
+                    <label for="phone" class="form-label">Téléphone</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Votre téléphone">
+                  </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                  <div class="form-group">
+                    <label for="subject" class="form-label">Sujet</label>
+                    <input type="text" class="form-control" id="subject" placeholder="Sujet de votre message" required>
+                  </div>
+                </div>
+                
+                <div class="col-12 mb-4">
+                  <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" placeholder="Votre message" required></textarea>
+                  </div>
+                </div>
+                
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 footer-widget footer-about">
+          <h4>SIM SOCIETY</h4>
+          <p>Nous sommes votre partenaire informatique de confiance, offrant des solutions technologiques innovantes pour répondre à tous vos besoins professionnels.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-6 footer-widget">
+          <h4>Liens rapides</h4>
+          <ul class="footer-links list-unstyled">
+            <li><a href="#hero">Accueil</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#team">Équipe</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 footer-widget">
+          <h4>Nos services</h4>
+          <ul class="footer-links list-unstyled">
+            <li><a href="#">Développement web</a></li>
+            <li><a href="#">Applications mobiles</a></li>
+            <li><a href="#">Cybersécurité</a></li>
+            <li><a href="#">Cloud Computing</a></li>
+            <li><a href="#">Réseaux & Infrastructure</a></li>
+            <li><a href="#">Support technique</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 footer-widget">
+          <h4>Nous contacter</h4>
+          <ul class="footer-contact list-unstyled">
+            <li><i class="fas fa-map-marker-alt"></i>Bamako, Mali</li>
+            <li><i class="fas fa-envelope"></i> contact@simsociety.com</li>
+            <li><i class="fas fa-phone-alt"></i> +22373245349</li>
+            <li><i class="fas fa-clock"></i> Lun - Ven: 9h00 - 18h00</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="m-0">&copy; 2025 SIM SOCIETY. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script>
+    // Initialize AOS animation
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+      
+      // Navbar scroll effect
+      const navbar = document.querySelector('.navbar');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+      
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 70,
+              behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            if (navbarCollapse.classList.contains('show')) {
+              document.querySelector('.navbar-toggler').click();
+            }
+          }
+        });
+      });
+      
+      // Portfolio filtering
+      const portfolioFilters = document.querySelectorAll('.portfolio-filter button');
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+      
+      portfolioFilters.forEach(filter => {
+        filter.addEventListener('click', function() {
+          // Remove active class from all filters
+          portfolioFilters.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked filter
+          this.classList.add('active');
+          
+          const filterValue = this.getAttribute('data-filter');
+          
+          portfolioItems.forEach(item => {
+            if (filterValue === 'all' || item.classList.contains(filterValue)) {
+              item.style.display = 'block';
+              setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+              }, 100);
+            } else {
+              item.style.opacity = '0';
+              item.style.transform = 'scale(0.8)';
+              setTimeout(() => {
+                item.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+      
+      // Contact form submission
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Simulating form submission
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const originalText = submitBtn.textContent;
+          
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+          
+          // Simulate API call
+          setTimeout(() => {
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé!';
+            submitBtn.classList.remove('btn-primary');
+            submitBtn.classList.add('btn-success');
+            
+            contactForm.reset();
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+              submitBtn.classList.remove('btn-success');
+              submitBtn.classList.add('btn-primary');
+            }, 3000);
+          }, 1500);
+        });
+      }
+      
+      // Back to top button
+      const backToTopBtn = document.getElementById('backToTop');
+      if (backToTopBtn) {
+        // Initially hide the button
+        backToTopBtn.style.display = 'none';
+        
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 300) {
+            backToTopBtn.style.display = 'flex';
+            backToTopBtn.style.opacity = '1';
+          } else {
+            backToTopBtn.style.opacity = '0';
+            setTimeout(() => {
+              if (window.scrollY <= 300) {
+                backToTopBtn.style.display = 'none';
+              }
+            }, 300);
+          }
+        });
+        
+        backToTopBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+      
+      // Add custom styles for back to top button
+      const style = document.createElement('style');
+      style.textContent = `
+        .back-to-top {
+          position: fixed;
+          right: 25px;
+          bottom: 25px;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: var(--primary);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          z-index: 999;
+          opacity: 0;
+          transition: all 0.3s ease;
+          box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+        }
+        
+        .back-to-top:hover {
+          background-color: var(--primary-dark);
+          transform: translateY(-3px);
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>
